@@ -20,7 +20,10 @@
           :onRemove="handleRemove"
         />
       </template>
-      <template #default="{row, column, $index}">
+      <template v-if="item.type === 'expand'" #default="{row, column, $index}">
+        <slot name="expand" v-bind="{row, column, $index}" />
+      </template>
+      <template v-else-if="!item.type" #default="{row, column, $index}">
         <slot
           :name="item.prop"
           v-bind="{row, column, $index}"
