@@ -1,5 +1,11 @@
 <template>
-  <el-table class="custom-table" ref="elTable" :data="data" v-bind="$attrs" v-on="$listeners">
+  <el-table
+    class="custom-table"
+    ref="elTable"
+    :data="data"
+    v-bind="$attrs"
+    v-on="$listeners"
+  >
     <el-table-column
       v-for="item in tableConfig"
       :key="item.prop"
