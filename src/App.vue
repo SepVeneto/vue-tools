@@ -14,11 +14,13 @@
         <el-button type="danger">退役</el-button>
       </template>
     </custom-table>
+    <timeline />
   </div>
 </template>
 
 <script>
 import customTable from '@/components/customTable/customTable';
+import timeline from './components/timeline';
 const tableConfig = [
   { label: '所属团体', prop: 'group' },
   { label: '型号', prop: 'model'},
@@ -32,6 +34,7 @@ export default {
   name: 'App',
   components: {
     customTable,
+    timeline,
   },
   data() {
     return {
