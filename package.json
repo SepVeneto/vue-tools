@@ -1,38 +1,38 @@
 {
-  "name": "tools",
-  "version": "1.0.0",
-  "description": "自用工具\r ## 表格\r table的属性和事件以及table-item的属性和事件都完全继承了elementui。\r 以下是二次封装后添加的属性和事件",
-  "main": "tools.js",
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
-    "element-ui": "^2.13.1",
-    "vue": "^2.6.11"
+    "core-js": "^3.6.5",
+    "element-ui": "^2.15.1",
+    "highlight.js": "^11.1.0",
+    "vue": "^2.6.11",
+    "vue-router": "^3.5.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.3.0",
-    "@vue/cli-plugin-eslint": "~4.3.0",
-    "@vue/cli-service": "~4.3.0",
+    "@types/mockjs": "^1.0.3",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "node-sass": "^4.14.0",
-    "sass-loader": "^8.0.2",
+    "css-loader": "^5.2.4",
+    "eslint": "^5.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "mockjs": "^1.1.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^2.0.0",
+    "svg-sprite-loader": "^6.0.6",
     "vue-template-compiler": "^2.6.11"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SepVeneto/tools.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SepVeneto/tools/issues"
-  },
-  "homepage": "https://github.com/SepVeneto/tools#readme"
+  }
 }
