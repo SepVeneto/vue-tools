@@ -1,10 +1,35 @@
 const path = require('path');
 const platform = process.platform;
+// const env = process.env.NODE_ENV;
+const cdnConfig = [
+  {
+    js: 'https://cdn.jsdelivr.net/npm/vue@2.6.14',
+  },
+  {
+    js: 'https://cdn.jsdelivr.net/npm/vue-router@3.5.2',
+  },
+  {
+    js: 'https://cdn.jsdelivr.net/npm/element-ui@2.15.1/lib/index.js',
+    css: 'https://cdn.jsdelivr.net/npm/elementgui@2.15.1/lib/theme-chalk/index.css'
+  }
+]
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-tools/' : '/',
   productionSourceMap: false,
+  configureWebpack: {
+    externals: {
+      vue: 'Vue',
+      'vue-router': 'VueRouter',
+      'element-ui': 'ELEMENT',
+    },
+  },
   chainWebpack: (config) => {
+    config.plugin('html').tap(args => {
+      args[0].title = 'vue-tools';
+      args[0].cdnConfig = cdnConfig;
+      return args;
+    });
     config.resolve.alias
       .set('@', path.join(__dirname, 'src'))
       .set('components', path.join(__dirname, 'src/components'))
