@@ -2,6 +2,7 @@ const path = require('path');
 const platform = process.platform;
 
 module.exports = {
+  publicPath: process.env.NODE_ENV === 'production' ? '/vue-tools/' : '/',
   productionSourceMap: false,
   chainWebpack: (config) => {
     config.resolve.alias
