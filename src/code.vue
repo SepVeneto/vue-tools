@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section :id="tag">
     <div class="title">
-      <a :href="`#${tag}`" :name="tag">#</a>
+      <a :href="`#${tag}`">#</a>
       <span>{{title}}</span>
     </div>
     <div class="desc">{{desc}}</div>
@@ -34,7 +34,6 @@ export default {
       const codeRef = this.$refs.codeRef;
       if (codeRef) {
         const res = hljs.highlightBlock(this.$refs.codeRef)
-        console.log(res)
         return res;
       } else {
         return '';

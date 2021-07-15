@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <aside class="menu">
-      <ul>
+      <ul style="position: sticky; top: 10px">
         <li
-          :class="['menu-link', { 'is-active': active === item.prop }]"
           v-for="item in menus"
           :key="item.prop"
-          @click="handleClick(item.prop)"
-        >{{item.name}}</li>
+        >
+          <div
+            :class="['menu-link', { 'is-active': active === item.prop }]"
+            @click="handleClick(item.prop)"
+          >{{item.name}}</div>
+        </li>
       </ul>
     </aside>
     <router-view />
@@ -15,8 +18,14 @@
 </template>
 
 <script>
-import hljs from 'highlight.js';
+import menuData from './config';
+
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
 import 'highlight.js/styles/color-brewer.css'
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('javascript', javascript);
 
 export default {
   name: 'App',
@@ -29,18 +38,15 @@ export default {
   data() {
     return {
       active: '',
-      menus: [
-        { name: '表格', prop: 'table' },
-        { name: '输入框', prop: 'input' },
-        { name: '选择框', prop: 'select' },
-        { name: '按钮', prop: 'button' },
-        { name: '搜索栏', prop: 'search' },
-        { name: '开关', prop: 'switch' },
-      ]
+      menus: menuData,
     }
   },
+  mounted() {
+    // const element = document.querySelector(`#${anchor.replace(/#/, '')}`);
+    // element.scrollIntoView();
+  },
   methods: {
-    handleClick(prop) {
+    handleClick(prop, anchor) {
       this.active = prop;
       this.$router.push({ name: prop })
     }
@@ -55,9 +61,6 @@ export default {
 }
 .menu {
   width: 200px;
-}
-.wrapper {
-  margin: 0 auto;
 }
 .is-active {
   background: #4903ff;

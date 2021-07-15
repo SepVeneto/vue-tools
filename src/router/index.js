@@ -10,6 +10,11 @@ const routes = [
         path: '/table',
         name: 'table',
         component: () => import('@/views/table/index.vue'),
+      },
+      {
+        path: '/input',
+        name: 'input',
+        component: () => import('@/views/input/index.vue'),
       }
     ]
   },

@@ -23,6 +23,7 @@ const cdnConfig = process.env.NODE_ENV === 'production' ? [
 function parseExternals(config) {
   return config.reduce((ext, curr) => {
     ext[curr.name] = curr.scope;
+    return ext;
   }, {})
 }
 
