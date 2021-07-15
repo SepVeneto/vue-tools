@@ -1,28 +1,36 @@
 const path = require('path');
 const platform = process.platform;
 // const env = process.env.NODE_ENV;
-const cdnConfig = [
+const cdnConfig = process.env.NODE_ENV === 'production' ? [
   {
+    name: 'vue',
+    scope: 'Vue',
     js: 'https://cdn.jsdelivr.net/npm/vue@2.6.14',
   },
   {
+    name: 'vue-router',
+    scope: 'VueRouter',
     js: 'https://cdn.jsdelivr.net/npm/vue-router@3.5.2',
   },
   {
+    name: 'element-ui',
+    scope: 'ELEMENT',
     js: 'https://cdn.jsdelivr.net/npm/element-ui@2.15.1/lib/index.js',
     css: 'https://cdn.jsdelivr.net/npm/elementgui@2.15.1/lib/theme-chalk/index.css'
   }
-]
+] : [];
+
+function parseExternals(config) {
+  return config.reduce((ext, curr) => {
+    ext[curr.name] = curr.scope;
+  }, {})
+}
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production' ? '/vue-tools/' : '/',
   productionSourceMap: false,
   configureWebpack: {
-    externals: {
-      vue: 'Vue',
-      'vue-router': 'VueRouter',
-      'element-ui': 'ELEMENT',
-    },
+    externals: parseExternals(cdnConfig),
   },
   chainWebpack: (config) => {
     config.plugin('html').tap(args => {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <% htmlWebpackPlugin.options.cdnConfig.forEach(function(item) { if (!item.css) return; %>
-      <script ref="stylesheet" href="<%= item.css %>"></script>
+      <link ref="stylesheet" href="<%= item.css %>"></link>
     <% }) %>
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
