@@ -61,11 +61,24 @@ export default {
     }
   },
   mounted() {
-    const anchor = this.$route.hash;
-    window.location.hash = '';
-    window.location.hash = anchor.replace(/#/, '');
+    this.goAnchor();
   },
   methods: {
+    goAnchor() {
+      if (location.href.match(/#/g).length > 1) {
+        const anchor = location.href.match(/#[^#]+$/);
+        if (!anchor) {
+          return;
+        }
+        const elm = document.querySelector(anchor[0]);
+        if (!elm) {
+          return;
+        }
+        setTimeout(() => {
+          document.querySelector('html').scrollTop = elm.offsetTop;
+        })
+      }
+    },
     handleClick(anchor) {
       const element = document.querySelector(`#${anchor}`);
       element.scrollIntoView({

@@ -22,6 +22,6 @@ const routes = [
 
 export const router = new VueRouter({
   base: '/vue-tools',
-  mode: 'history',
+  mode: 'hash',
   routes,
 });
