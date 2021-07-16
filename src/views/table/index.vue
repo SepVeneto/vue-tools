@@ -61,12 +61,9 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
-      const anchor = this.$route.hash;
-      // eslint-disable-next-line no-self-assign
-      window.location = window.location;
-      window.location.hash = anchor
-    }, 1000)
+    const anchor = this.$route.hash;
+    window.location.hash = '';
+    window.location.hash = anchor.replace(/#/, '');
   },
   methods: {
     handleClick(anchor) {
