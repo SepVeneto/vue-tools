@@ -1,15 +1,15 @@
 export default {
   title: '基本用法',
-  desc: 'bcInput的基本用法',
-  tag: 'basic-input',
+  desc: 'bcSelect的基本用法',
+  tag: 'basic-select',
   code: `<template>
-  <bc-input v-model="text" width="180px" />
+  <bc-select v-model="select" width="180px" />
 </template>
 <script>
 export default {
   data() {
     return {
-      text: 'bcInput',
+      select: '',
     }
   }
 }

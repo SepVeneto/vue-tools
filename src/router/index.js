@@ -15,6 +15,11 @@ const routes = [
         path: '/input',
         name: 'input',
         component: () => import('@/views/input/index.vue'),
+      },
+      {
+        path: '/selet',
+        name: 'select',
+        component: () => import('@/views/select/index.vue'),
       }
     ]
   },

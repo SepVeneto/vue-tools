@@ -1,9 +1,9 @@
 export default {
-  title: '基本用法',
-  desc: 'bcInput的基本用法',
-  tag: 'basic-input',
+  title: '密码输入',
+  desc: '',
+  tag: 'input-password',
   code: `<template>
-  <bc-input v-model="text" width="180px" />
+  <bc-input v-model="text" width="180px" password />
 </template>
 <script>
 export default {

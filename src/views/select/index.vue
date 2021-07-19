@@ -15,21 +15,13 @@
 <script>
 import { line2Camel } from '@/utils/tools';
 import AsideMenu from '@/views/components/asideMenu.vue';
-import BasicInput from './example/basic';
-import InputBorder from './example/border';
-import InputDefault from './example/defaultValue';
-import InputDisplay from './example/display';
-import InputPassword from './example/password';
-import { input as config } from '@/config';
+import BasicSelect from './example/basic';
+import { select as config } from '@/config';
 export default {
-  name: 'inputExample',
+  name: 'selectExample',
   components: {
     AsideMenu,
-    BasicInput,
-    InputBorder,
-    InputDefault,
-    InputDisplay,
-    InputPassword,
+    BasicSelect,
   },
   computed: {
     asides() {

@@ -8,7 +8,7 @@
     <div class="area">
       <div class="demo"><slot /></div>
       <div class="code">
-        <transition name="collapse">
+        <transition name="collapse" >
           <pre v-if="show"><code ref="codeRef" class="html hljs xml">{{code}}</code></pre>
         </transition>
       </div>
@@ -110,17 +110,31 @@ export default {
 }
 .code {
   position: relative;
+  overflow: hidden;
+  > pre {
+    max-height: 200vh;
+  }
 }
-.collapse-enter-active,
+.collapse-enter-active {
+  transition: max-height 1s linear;
+}
 .collapse-leave-active {
-  transition: max-height 0.3s linear;
+  // max-height: 200vh;
 }
-.collapse-enter, .collapse-leave-to {
-  max-height: 0;
+.collapse-enter {
+  max-height: 0 !important;
 }
-.collapse-enter-to, .collapse-leave {
-  max-height: 200vh;
+.collapse-enter-to {
+  // max-height: 200vh;
 }
+
+.collapse-leave-to {
+  max-height: 0 !important;
+  transition: max-height 0.5s linear;
+}
+// .collapse-enter {
+//   max-height: 200vh;
+// }
 .operate-button {
   height: 30px;
   background: #efefef;

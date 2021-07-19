@@ -1,3 +1,12 @@
+export function line2Camel(str) {
+  console.log(str)
+  const res = str.split('-');
+  const camcel = res.reduce((camcel, curr) => {
+    camcel += curr.replace(/\S/, letter => letter.toUpperCase());
+    return camcel;
+  }, '');
+  return camcel;
+}
 function updateData(params, prop, val, context) {
   if (context.updateData) {
     context.updateData(prop, val);

@@ -1,9 +1,9 @@
 export default {
-  title: '基本用法',
-  desc: 'bcInput的基本用法',
-  tag: 'basic-input',
+  title: '输入框边框',
+  desc: '',
+  tag: 'input-border',
   code: `<template>
-  <bc-input v-model="text" width="180px" />
+  <bc-input v-model="text" width="180px" border />
 </template>
 <script>
 export default {

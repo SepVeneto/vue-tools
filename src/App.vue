@@ -2,10 +2,7 @@
   <div id="app">
     <aside class="menu">
       <ul style="position: sticky; top: 10px">
-        <li
-          v-for="item in menus"
-          :key="item.prop"
-        >
+        <li v-for="item in menus" :key="item.prop" >
           <div
             :class="['menu-link', { 'is-active': active === item.prop }]"
             @click="handleClick(item.prop)"
@@ -13,7 +10,14 @@
         </li>
       </ul>
     </aside>
-    <router-view />
+    <main style="width: 100%">
+      <router-view />
+    </main>
+    <template>
+      <el-backtop>
+        <i class="top-icon el-icon-caret-top" ></i>
+      </el-backtop>
+    </template>
   </div>
 </template>
 
@@ -54,6 +58,22 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+#app {
+  .top-icon {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #409eff;
+    color: #fff;
+
+  }
+}
+</style>
+
 <style lang="scss">
 #app {
   font-family: 'YaHei';
@@ -70,6 +90,7 @@ export default {
   cursor: pointer;
   padding: 10px 20px;
   transition: all .3s;
+  white-space: nowrap;
   &:hover {
     background: #490eff;
     color: #fff;

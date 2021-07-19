@@ -1,29 +1,18 @@
 <template>
   <section class="wrapper">
-    <aside class="aside">
-      <ul>
-        <li
-          v-for="each in menus"
-          :class="['menu-link']"
-          :key="each.prop"
-          @click="handleClick(each.prop)"
-        >
-          <router-link :to="`#${each.prop}`">{{each.name}}</router-link>
-        </li>
-      </ul>
-    </aside>
-    <main class="container">
+    <aside-menu :menus="menus" />
+    <main>
       <basic />
+      <cell-edit />
       <custom-cell />
       <custom-header />
-      <multile-header />
-      <row-span />
       <ellipsis />
+      <multile-header />
       <radio />
-      <cell-edit />
+      <row-span />
       <simple-table />
-      <table-page />
       <table-api />
+      <table-page />
     </main>
   </section>
 </template>
@@ -41,6 +30,7 @@ import simpleTable from './example/simple-table/index.vue';
 import tablePage from './example/table-page/index.vue';
 import tableApi from './example/table-api/index.vue';
 import { table as menus } from '@/config';
+import AsideMenu from '../components/asideMenu.vue';
 export default {
   components: {
     basic,
@@ -54,36 +44,11 @@ export default {
     simpleTable,
     tablePage,
     tableApi,
+    AsideMenu,
   },
   data() {
     return {
       menus,
-    }
-  },
-  mounted() {
-    this.goAnchor();
-  },
-  methods: {
-    goAnchor() {
-      if (location.href.match(/#/g).length > 1) {
-        const anchor = location.href.match(/#[^#]+$/);
-        if (!anchor) {
-          return;
-        }
-        const elm = document.querySelector(anchor[0]);
-        if (!elm) {
-          return;
-        }
-        setTimeout(() => {
-          document.querySelector('html').scrollTop = elm.offsetTop;
-        })
-      }
-    },
-    handleClick(anchor) {
-      const element = document.querySelector(`#${anchor}`);
-      element.scrollIntoView({
-        behavior: 'smooth'
-      });
     }
   },
 }
@@ -91,12 +56,5 @@ export default {
 
 <style lang="scss" scoped>
 .wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  .aside > ul {
-    top: 10px;
-    position: sticky;
-  }
 }
 </style>

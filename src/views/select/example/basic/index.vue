@@ -1,6 +1,6 @@
 <template>
   <code-card v-bind="config">
-    <bc-input v-model="text" width="180px" />
+    <bc-select v-model="select" width="180px" :options="options" />
   </code-card>
 </template>
 
@@ -15,7 +15,11 @@ export default {
   data() {
     return {
       config,
-      text: 'bcInput',
+      select: '',
+      options: [
+        { label: '维内托 维托里奥', value: 'vv' },
+        { label: '安德烈亚 多利亚', value: 'Andrea Doria' },
+      ]
     }
   }
 }

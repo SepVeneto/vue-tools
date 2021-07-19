@@ -1,9 +1,9 @@
 export default {
-  title: '基本用法',
-  desc: 'bcInput的基本用法',
-  tag: 'basic-input',
+  title: '展示模式',
+  desc: '',
+  tag: 'input-display',
   code: `<template>
-  <bc-input v-model="text" width="180px" />
+  <bc-input v-model="text" width="180px" only-display />
 </template>
 <script>
 export default {

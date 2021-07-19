@@ -1,5 +1,5 @@
 .bc-input.no-border {
-  & /deep/ .el-input__inner {
+  > .el-input__inner {
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -8,7 +8,7 @@
     font-family: 'YaHei';
     line-height: 1.5;
   }
-  & /deep/ .el-textarea__inner {
+  > .el-textarea__inner {
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .bc-input.bottom-border {
-  & /deep/ .el-input__inner {
+  > .el-input__inner {
     background-color: transparent;
     border-radius: initial;
     padding-left: 0;
@@ -31,7 +31,7 @@
     font-family: 'YaHei';
     line-height: 1.5;
   }
-  & /deep/ .el-textarea__inner {
+  > .el-textarea__inner {
     background-color: transparent;
     border-radius: initial;
     padding-left: 0;
