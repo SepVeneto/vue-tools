@@ -81,16 +81,16 @@ export default ({
   }
 }
 .scrollbar {
-  &::v-deep(.el-scrollbar__wrap) {
+  & /deep/ .el-scrollbar__wrap {
     max-height: 500px;
     padding-bottom: 17px;
   }
-  &::v-deep(.el-scrollbar__view) {
+  & /deep/ .el-scrollbar__view {
     padding-right: 14px;
   }
 }
 .isFullscreen {
-  &:deep(.el-scrollbar__wrap) {
+  & /deep/ .el-scrollbar__wrap {
     max-height: calc(100vh - 200px);
   }
 }

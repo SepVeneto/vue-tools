@@ -57,7 +57,5 @@ export default {
   float: left;
   top: 10px;
   position: sticky;
-  > ul {
-  }
 }
 </style>

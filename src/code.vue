@@ -128,8 +128,6 @@ export default {
 .code {
   position: relative;
   overflow: hidden;
-  > pre {
-  }
 }
 .collapse-enter-active, .collapse-leave-active {
   transition: height 0.3s linear;

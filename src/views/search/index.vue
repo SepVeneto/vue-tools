@@ -49,6 +49,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.wrapper {
-}
 </style>
