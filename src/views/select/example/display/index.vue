@@ -4,13 +4,8 @@
       v-model="select"
       width="180px"
       :options="options"
-      :label.sync="label"
+      only-display
     />
-    <div>
-      <code>label: {{ label }}</code>
-    </div>
-    <div>
-      <code>value: {{ select }}</code> </div>
   </code-card>
 </template>
 
@@ -18,15 +13,14 @@
 import codeCard from '@/code.vue';
 import config from './code';
 export default {
-  name: 'basicInput',
+  name: 'selectDisplay',
   components: {
     codeCard,
   },
   data() {
     return {
       config,
-      label: '',
-      select: '',
+      select: 'vv',
       options: [
         { label: '维托里奥 维内托', value: 'vv' },
         { label: '安德烈亚 多利亚', value: 'Andrea Doria' },

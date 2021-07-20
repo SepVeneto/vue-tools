@@ -52,7 +52,7 @@ export default {
   methods: {
     handleClick(prop, anchor) {
       this.active = prop;
-      this.$router.push({ name: prop })
+      this.$router.push({ name: prop }).catch(() => {})
     }
   }
 }

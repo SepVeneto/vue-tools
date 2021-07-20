@@ -73,6 +73,7 @@ export default {
     cursor: not-allowed;
   }
   .core {
+    font-size: 14px;
     display: inline-block;
     width: 60px;
     border-radius: 10px;

@@ -15,23 +15,13 @@
 <script>
 import { line2Camel } from '@/utils/tools';
 import AsideMenu from '@/views/components/asideMenu.vue';
-import BasicSelect from './example/basic';
-import SelectApi from './example/api';
-import SelectCustom from './example/custom';
-import SelectObject from './example/object';
-import SelectDefault from './example/defaultValue';
-import SelectDisplay from './example/display';
-import { select as config } from '@/config';
+import BasicSwitch from './example/basic';
+import { Switch as config } from '@/config';
 export default {
   name: 'selectExample',
   components: {
     AsideMenu,
-    BasicSelect,
-    SelectApi,
-    SelectCustom,
-    SelectObject,
-    SelectDefault,
-    SelectDisplay,
+    BasicSwitch,
   },
   computed: {
     asides() {

@@ -5,7 +5,7 @@
         <template slot="">
           <div class="text-center">
             <span>您是否有标准的Excel模版，需要依照模版导入，否则会失败。</span><br>
-            <a class="text-info cur-point" @click="handleDownloadTemplate">还没有Excel模版?请下载模版</a>
+            <a class="text-info" @click="handleDownloadTemplate">还没有Excel模版?请下载模版</a>
           </div>
         </template>
       </el-alert>
@@ -76,3 +76,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.text-info {
+  cursor: pointer;
+}
+</style>

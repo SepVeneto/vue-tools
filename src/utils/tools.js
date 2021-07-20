@@ -1,5 +1,4 @@
 export function line2Camel(str) {
-  console.log(str)
   const res = str.split('-');
   const camcel = res.reduce((camcel, curr) => {
     camcel += curr.replace(/\S/, letter => letter.toUpperCase());
@@ -73,3 +72,36 @@ export function generateInput(h, value, item, context) {
     return context.$slots[item.prop] || context.$parent.$scopedSlots[item.property]();
   }
 };
+
+/**
+ * 从对象中取值
+ * @param {object} row 目标对象
+ * @param {string} column 目标key，支持链式取值
+ * @param {object} config 相关配置
+ * @param {boolean} disableTravel 禁用链式取值
+ * @returns string
+ */
+export function generateValue(row, column, config = {}, disableTravel) {
+  const emptyText = '';
+  if (disableTravel) {
+    return row[column] || emptyText;
+  }
+  function getPathValue(data, keys, index) {
+    const key = keys[index];
+    if (data[key] instanceof Object && !Array.isArray(data[key])) {
+      return getPathValue(data[key], keys, index + 1);
+    } else {
+      return data[key];
+    }
+  }
+  const path = column.split('.');
+  let res = '';
+  res = getPathValue(row, path, 0)
+  if (Array.isArray(res) && res.length === 0) {
+    res = '';
+  }
+  if (res !== '' && (res || res === 0)) {
+    return res + (config.unit || '');
+  }
+  return emptyText;
+}

@@ -6,9 +6,7 @@
         :class="['menu-link']"
         :key="each.prop"
         @click="handleClick(each.prop)"
-      >
-        <router-link :to="`#${each.prop}`">{{each.name}}</router-link>
-      </li>
+      >{{each.name}}</li>
     </ul>
   </aside>
 </template>
@@ -43,6 +41,8 @@ export default {
     },
     handleClick(anchor) {
       const element = document.querySelector(`#${anchor}`);
+      const { location } = this.$router.resolve(`#${anchor}`);
+      this.$router.push(location)
       element.scrollIntoView({
         behavior: 'smooth'
       });

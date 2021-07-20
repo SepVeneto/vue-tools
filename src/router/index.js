@@ -20,6 +20,21 @@ const routes = [
         path: '/selet',
         name: 'select',
         component: () => import('@/views/select/index.vue'),
+      },
+      {
+        path: '/button',
+        name: 'button',
+        component: () => import('@/views/button/index.vue'),
+      },
+      {
+        path: '/search',
+        name: 'search',
+        component: () => import('@/views/search/index.vue'),
+      },
+      {
+        path: '/switch',
+        name: 'switch',
+        component: () => import('@/views/switch/index.vue'),
       }
     ]
   },

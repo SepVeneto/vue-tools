@@ -53,6 +53,9 @@ export default {
               options: this.relationOptions,
               placeholder: '查询关系',
               clearable: false,
+            },
+            on: {
+              input: val => { params.relation = val },
             }
           }}
         />
@@ -211,6 +214,7 @@ export default {
     width: 100%;
     height: 40px !important;
     border: 2px dashed #dcdfe6;
+    padding: 0;
   }
   // .item-content {
   //   margin-right: 10px;

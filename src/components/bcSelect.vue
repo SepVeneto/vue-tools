@@ -52,13 +52,13 @@
 
 <script>
 // import serverSelect from './serverSelect';
+import { generateValue } from '@/utils/tools'
 export default {
   name: 'bc-select',
   components: {
     // serverSelect,
   },
   props: {
-    valueType: String,
     group: Boolean,
     defaultValue: {},
     immediate: {
@@ -145,7 +145,7 @@ export default {
     },
     hasValue(item) {
       // const value = item[this.customLabel] || item[this.customValue];
-      const value = item[this.customLabel];
+      const value = generateValue(item, this.customLabel);
       if (value === '' || !!value) {
         return value;
       } else {

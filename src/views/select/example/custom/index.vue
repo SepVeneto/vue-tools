@@ -3,14 +3,10 @@
     <bc-select
       v-model="select"
       width="180px"
+      custom-label="name"
+      custom-value="alias"
       :options="options"
-      :label.sync="label"
     />
-    <div>
-      <code>label: {{ label }}</code>
-    </div>
-    <div>
-      <code>value: {{ select }}</code> </div>
   </code-card>
 </template>
 
@@ -18,18 +14,17 @@
 import codeCard from '@/code.vue';
 import config from './code';
 export default {
-  name: 'basicInput',
+  name: 'selectCustom',
   components: {
     codeCard,
   },
   data() {
     return {
       config,
-      label: '',
       select: '',
       options: [
-        { label: '维托里奥 维内托', value: 'vv' },
-        { label: '安德烈亚 多利亚', value: 'Andrea Doria' },
+        { name: '维托里奥 维内托', alias: 'vv' },
+        { name: '安德烈亚 多利亚', alias: 'Andrea Doria' },
       ]
     }
   }

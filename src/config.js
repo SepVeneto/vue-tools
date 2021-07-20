@@ -15,16 +15,24 @@ const moduleList = files.reduce((list, curr) => {
     module: moduleName,
     name: data.default.title,
     prop: data.default.tag,
+    sort: data.default.sort,
   });
   return list;
 }, [])
 
-export const table = moduleList.filter(item => item.module === 'table');
-export const input = moduleList.filter(item => item.module === 'input');
-export const select = moduleList.filter(item => item.module === 'select');
-export const button = moduleList.filter(item => item.module === 'button');
-export const search = moduleList.filter(item => item.module === 'search');
-export const Switch = moduleList.filter(item => item.module === 'switch');
+function filterSort(list, key) {
+  const res = list.filter(item => item.module === key).sort((a, b) => {
+    return (b.sort || 0) - (a.sort || 0);
+  })
+  return res;
+}
+
+export const table = filterSort(moduleList, 'table');
+export const input = filterSort(moduleList, 'input');
+export const select = filterSort(moduleList, 'select');
+export const button = filterSort(moduleList, 'button');
+export const search = filterSort(moduleList, 'search');
+export const Switch = filterSort(moduleList, 'switch');
 
 const menus = [
   { name: '表格', prop: 'table', children: table },

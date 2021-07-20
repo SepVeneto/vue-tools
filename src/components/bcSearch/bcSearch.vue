@@ -119,7 +119,7 @@ export default {
     };
 
     const node = (
-      <bc-wrapper wrapperStyle={{ paddingBottom: 0 }}>
+      <div>
         <el-form class="search-containers" inline nativeOn-submit={this.handleSubmit}>
           {this.searchConfig.map(item => {
             return (
@@ -140,7 +140,7 @@ export default {
             attrs: this.upload,
             on: { 'update:visible': (val) => { this.uploadVisible = val } }
           }} />}
-      </bc-wrapper>
+      </div>
     );
     const advance = () => (
       <advance-search
