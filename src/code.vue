@@ -8,8 +8,14 @@
     <div class="area">
       <div class="demo"><slot /></div>
       <div class="code">
-        <transition name="collapse" >
-          <pre v-if="show"><code ref="codeRef" class="html hljs xml">{{code}}</code></pre>
+        <transition
+          name="collapse"
+          @before-enter="handleBeforeEnter"
+          @enter="handleEnter"
+          @before-leave="handleBeforeLeave"
+          @leave="handleLeave"
+        >
+          <pre v-show="show"><code ref="codeRef" class="html hljs xml">{{code}}</code></pre>
         </transition>
       </div>
       <div :class="['operate-button', {'is-show': show}]">
@@ -50,13 +56,24 @@ export default {
   mounted() {
   },
   methods: {
+    handleLeave(e) {
+      e.style.height = 0;
+    },
+    handleBeforeLeave(e) {
+      e.style.height = e.scrollHeight + 'px';
+    },
+    handleEnter(e) {
+      e.style.height = e.scrollHeight + 'px';
+    },
+    handleBeforeEnter(e) {
+      e.style.height = 0;
+    },
     handleClick() {
       this.show = !this.show;
       this.$nextTick().then(() => {
         const codeRef = this.$refs.codeRef;
         if (codeRef) {
           const res = hljs.highlightElement(this.$refs.codeRef)
-          console.log(res)
           return res;
         } else {
           return '';
@@ -112,26 +129,12 @@ export default {
   position: relative;
   overflow: hidden;
   > pre {
-    max-height: 200vh;
   }
 }
-.collapse-enter-active {
-  transition: max-height 1s linear;
-}
-.collapse-leave-active {
-  // max-height: 200vh;
-}
-.collapse-enter {
-  max-height: 0 !important;
-}
-.collapse-enter-to {
-  // max-height: 200vh;
+.collapse-enter-active, .collapse-leave-active {
+  transition: height 0.3s linear;
 }
 
-.collapse-leave-to {
-  max-height: 0 !important;
-  transition: max-height 0.5s linear;
-}
 // .collapse-enter {
 //   max-height: 200vh;
 // }
