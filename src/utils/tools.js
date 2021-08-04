@@ -105,3 +105,23 @@ export function generateValue(row, column, config = {}, disableTravel) {
   }
   return emptyText;
 }
+
+export function copyText(text) {
+  return new Promise((resolve, reject) => {
+    try {
+      navigator.clipboard.writeText(text).then(() => {
+        resolve(true);
+      })
+    } catch (err) {
+      console.error(err);
+      const input = document.createElement('input');
+      input.value = text;
+      document.body.appendChild(input);
+      input.select();
+      document.execCommand('copy');
+      input.style.display = 'none';
+      document.body.removeChild(input);
+      resolve(true);
+    }
+  })
+}

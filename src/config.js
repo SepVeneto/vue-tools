@@ -33,6 +33,7 @@ export const select = filterSort(moduleList, 'select');
 export const button = filterSort(moduleList, 'button');
 export const search = filterSort(moduleList, 'search');
 export const Switch = filterSort(moduleList, 'switch');
+export const other = filterSort(moduleList, 'other');
 
 const menus = [
   { name: '表格', prop: 'table', children: table },
@@ -41,5 +42,6 @@ const menus = [
   { name: '按钮', prop: 'button', children: button },
   { name: '搜索栏', prop: 'search', children: search },
   { name: '开关', prop: 'switch', children: Switch },
+  { name: '其它', prop: 'other', children: other },
 ]
 export default menus;

@@ -35,6 +35,11 @@ const routes = [
         path: '/switch',
         name: 'switch',
         component: () => import('@/views/switch/index.vue'),
+      },
+      {
+        path: '/other',
+        name: 'other',
+        component: () => import('@/views/other/index.vue'),
       }
     ]
   },
