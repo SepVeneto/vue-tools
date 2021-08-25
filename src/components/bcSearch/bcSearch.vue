@@ -62,6 +62,7 @@ export default {
       immediate: true,
       handler(val) {
         this.defaultParams = JSON.parse(JSON.stringify({ ...this.value, ...val }));
+        this.$emit('input', { ...this.value, ...this.defaultParams });
       }
     }
   },
