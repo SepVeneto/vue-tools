@@ -13,13 +13,13 @@
         v-for="(groupOptions, index) in selectOptions"
         :key="index"
         :label="hasValue(groupOptions)"
-        :value="groupOptions[customValue] == null ? groupOptions: groupOptions[customValue]"
+        :value="groupOptions[optionValue] == null ? groupOptions: groupOptions[optionValue]"
       >
         <el-option
           v-for="item in groupOptions.children"
-          :key="item[optionKey || customValue]"
+          :key="item[optionKey || optionValue]"
           :label="hasValue(item)"
-          :value="item[customValue] == null ? item : item[customValue]"
+          :value="item[optionValue] == null ? item : item[optionValue]"
           :disabled="itemDisabled && itemDisabled(item)"
         >
           <slot v-bind="{...item}"/>
@@ -29,9 +29,9 @@
     <template v-else>
       <el-option
         v-for="item in selectOptions"
-        :key="item[optionKey || customValue]"
+        :key="item[optionKey || optionValue]"
         :label="hasValue(item)"
-        :value="item[customValue] == null ? item : item[customValue]"
+        :value="item[optionValue] == null ? item : item[optionValue]"
         :disabled="itemDisabled && itemDisabled(item)"
       >
         <slot v-bind="{...item}"/>
@@ -55,6 +55,7 @@
 import { generateValue } from '@/utils/tools'
 export default {
   name: 'bc-select',
+  inject: ['configProvider'],
   components: {
     // serverSelect,
   },
@@ -86,15 +87,22 @@ export default {
     },
     customLabel: {
       type: String,
-      default: 'label'
     },
     customValue: {
       type: String,
-      default: 'value'
     },
     itemDisabled: Function,
   },
   computed: {
+    optionLabel() {
+      return this.customLabel || this.configProviderSelect.label || 'label';
+    },
+    optionValue() {
+      return this.customValue || this.configProviderSelect.value || 'value';
+    },
+    configProviderSelect() {
+      return this.configProvider.select;
+    },
     needGroup() {
       if (!this.group) {
         return false;
@@ -109,9 +117,9 @@ export default {
         if (this.value instanceof Object) {
           obj = this.value
         } else {
-          obj = this.selectOptions.find(each => each[this.customValue] === item);
+          obj = this.selectOptions.find(each => each[this.optionValue] === item);
         }
-        res.push(obj ? obj[this.customLabel] : '');
+        res.push(obj ? obj[this.optionLabel] : '');
       })
       return res.join(',')
     },
@@ -145,7 +153,7 @@ export default {
     },
     hasValue(item) {
       // const value = item[this.customLabel] || item[this.customValue];
-      const value = generateValue(item, this.customLabel);
+      const value = generateValue(item, this.optionLabel);
       if (value === '' || !!value) {
         return value;
       } else {
@@ -153,7 +161,7 @@ export default {
       }
     },
     getObject(value) {
-      const res = this.selectOptions.find(item => item[this.customValue] === (value || this.value));
+      const res = this.selectOptions.find(item => item[this.optionValue] === (value || this.value));
       if (!res) {
         return {};
       }
@@ -163,19 +171,19 @@ export default {
       const value = val || this.value
       if (Array.isArray(value)) {
         return value.reduce((res, curr) => {
-          const result = this.selectOptions.find(item => item[this.customValue] === curr);
+          const result = this.selectOptions.find(item => item[this.optionValue] === curr);
           if (!result) {
             res.push('')
           }
-          res.push(result[this.customLabel]);
+          res.push(result[this.optionLabel]);
           return res;
         }, [])
       } else {
-        const res = this.selectOptions.find(item => item[this.customValue] === value);
+        const res = this.selectOptions.find(item => item[this.optionValue] === value);
         if (!res) {
           return '';
         }
-        return res[this.customLabel];
+        return res[this.optionLabel];
       }
     },
     getList() {

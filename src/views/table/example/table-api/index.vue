@@ -27,7 +27,7 @@ export default {
       config,
       params: {
         page: 1,
-        rows: 20,
+        rows: 10,
       },
       total: 100,
       tableConfig: [

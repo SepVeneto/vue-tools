@@ -4,12 +4,17 @@ import customPagination from './customPagination.vue';
 export default {
   name: 'bc-table',
   inheritAttrs: false, // 不被作为props的attributes不会暴露在组件的根元素上
+  inject: ['configProvider'],
   components: {
     customTable,
     customPagination,
     customTableJsx,
   },
   props: {
+    arrayName: {
+      type: String,
+      default: '',
+    },
     colspanOptions: Object,
     padding: {
       type: Boolean,
@@ -76,10 +81,13 @@ export default {
     },
     searchModel: {
       get() {
-        return this.params;
+        const pageName = this.configProviderTable.pageName;
+        const pageSizeName = this.configProviderTable.pageSizeName;
+        const { [pageName]: page, [pageSizeName]: rows, ...params } = this.params;
+        return { page, rows, ...params };
       },
       set(obj) {
-        this.$emit('update:params', obj);
+        this.updateParams(obj);
       }
     },
     customTable() {
@@ -97,7 +105,7 @@ export default {
       const start = (page - 1) * rows;
       const end = page * rows;
       return this.data.slice(start, end);
-    }
+    },
   },
   data() {
     return {
@@ -108,7 +116,9 @@ export default {
         page: 1,
         rows: 5,
       },
-      loading: false
+      loading: false,
+      configProviderTable: {},
+      tableDataName: '',
     }
   },
   watch: {
@@ -121,6 +131,8 @@ export default {
     }
   },
   created() {
+    this.configProviderTable = this.configProvider.table || {};
+    this.tableDataName = this.arrayName || this.configProviderTable.arrayName || '';
     if (this.custom) {
       this.api && this.immediate && this.api()
     } else {
@@ -131,6 +143,12 @@ export default {
     }
   },
   methods: {
+    updateParams(params) {
+      const pageName = this.configProviderTable.pageName;
+      const pageSizeName = this.configProviderTable.pageSizeName;
+      const { page, rows, ...args } = params;
+      this.$emit('update:params', { ...args, [pageName]: page, [pageSizeName]: rows });
+    },
     setCurrentRow(row) {
       this.customTable.setCurrentRow(row);
     },
@@ -174,13 +192,8 @@ export default {
         this.loading = true
       }
       return this.api().then((data) => {
-        this.arrayData = data.data.rows || [];
+        this.arrayData = (this.tableDataName ? data.data[this.tableDataName] : data.data) || [];
         this.loading = false
-        // if (this.rowSpan.length > 0) {
-        //   this.rowSpan.forEach(key => {
-        //     Object.assign(this.rowSpanConfig, this.calData(this.arrayData, key));
-        //   })
-        // }
         this.arrayTotal = data.data.total || 0;
         return Promise.resolve(this.arrayData);
       }).catch(() => {

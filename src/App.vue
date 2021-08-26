@@ -1,24 +1,26 @@
 <template>
-  <div id="app">
-    <aside class="menu">
-      <ul style="position: sticky; top: 10px">
-        <li v-for="item in menus" :key="item.prop" >
-          <div
-            :class="['menu-link', { 'is-active': active === item.prop }]"
-            @click="handleClick(item.prop)"
-          >{{item.name}}</div>
-        </li>
-      </ul>
-    </aside>
-    <main style="width: 100%">
-      <router-view />
-    </main>
-    <template>
-      <el-backtop>
-        <i class="top-icon el-icon-caret-top" ></i>
-      </el-backtop>
-    </template>
-  </div>
+  <bc-config-provider :config="globalConfig">
+    <div id="app">
+      <aside class="menu">
+        <ul style="position: sticky; top: 10px">
+          <li v-for="item in menus" :key="item.prop" >
+            <div
+              :class="['menu-link', { 'is-active': active === item.prop }]"
+              @click="handleClick(item.prop)"
+            >{{item.name}}</div>
+          </li>
+        </ul>
+      </aside>
+      <main style="width: 100%">
+        <router-view />
+      </main>
+      <template>
+        <el-backtop>
+          <i class="top-icon el-icon-caret-top" ></i>
+        </el-backtop>
+      </template>
+    </div>
+  </bc-config-provider>
 </template>
 
 <script>
@@ -31,6 +33,18 @@ import 'highlight.js/styles/color-brewer.css'
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('javascript', javascript);
 
+const globalConfig = Object.freeze({
+  table: {
+    arrayName: 'rows',
+    pageName: 'page1',
+    pageSizeName: 'pageSize',
+  },
+  select: {
+    label: 'label',
+    value: 'value',
+  }
+});
+
 export default {
   name: 'App',
   created() {
@@ -41,6 +55,8 @@ export default {
   },
   data() {
     return {
+      globalConfig,
+      visible: false,
       active: '',
       menus: menuData,
     }

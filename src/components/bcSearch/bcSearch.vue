@@ -7,6 +7,7 @@ import advanceSearch from './advanceSearch';
 import { generateInput } from '@/utils/tools';
 export default {
   name: 'bc-search',
+  inject: ['configProvider'],
   props: {
     defaultValue: {
       type: Object,
@@ -84,8 +85,9 @@ export default {
       e.preventDefault();
     },
     handleSearch(params) {
+      const pageName = this.configProvider.table.pageName;
       this.$nextTick().then(() => {
-        this.$emit('input', { ...this.value, ...(params instanceof MouseEvent ? {} : params), page: 1 });
+        this.$emit('input', { ...this.value, ...(params instanceof MouseEvent ? {} : params), [pageName]: 1 });
         this.search();
       })
     },

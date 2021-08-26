@@ -5,7 +5,8 @@ import SvgIcon from './SvgIcon.vue';
 const bcComponents = require.context('.', false, /bc.*\.(jsx|vue)+/);
 const requireComp = context => context.keys().map(context);
 
-const install = function (Vue) {
+const install = function (Vue, options) {
+  console.log(options);
   [...requireComp(bcComponents), bcTable, bcSearch, bcInput, SvgIcon].forEach(item => {
     if (item.name) {
       Vue.component(item.name, item);
