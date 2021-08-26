@@ -19,6 +19,7 @@ import BasicSearch from './example/basic';
 import SearchUpload from './example/upload';
 import SearchAdvance from './example/advance';
 import SearchCustom from './example/custom';
+import SearchDefaultValue from './example/defaultValue';
 import { search as config } from '@/config';
 export default {
   name: 'searchExample',
@@ -28,6 +29,7 @@ export default {
     SearchUpload,
     SearchAdvance,
     SearchCustom,
+    SearchDefaultValue,
   },
   computed: {
     asides() {
