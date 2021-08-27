@@ -1,5 +1,5 @@
 <template>
-  <bc-config-provider :config="globalConfig">
+  <!-- <bc-config-provider :config="globalConfig"> -->
     <div id="app">
       <aside class="menu">
         <ul style="position: sticky; top: 10px">
@@ -20,7 +20,7 @@
         </el-backtop>
       </template>
     </div>
-  </bc-config-provider>
+  <!-- </bc-config-provider> -->
 </template>
 
 <script>

@@ -55,7 +55,9 @@
 import { generateValue } from '@/utils/tools'
 export default {
   name: 'bc-select',
-  inject: ['configProvider'],
+  inject: {
+    configProvider: { default: () => ({ select: {} }) }
+  },
   components: {
     // serverSelect,
   },
@@ -101,7 +103,7 @@ export default {
       return this.customValue || this.configProviderSelect.value || 'value';
     },
     configProviderSelect() {
-      return this.configProvider.select;
+      return this?.configProvider?.select;
     },
     needGroup() {
       if (!this.group) {

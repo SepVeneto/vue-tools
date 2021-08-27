@@ -4,7 +4,9 @@ import customPagination from './customPagination.vue';
 export default {
   name: 'bc-table',
   inheritAttrs: false, // 不被作为props的attributes不会暴露在组件的根元素上
-  inject: ['configProvider'],
+  inject: {
+    configProvider: { default: () => ({ table: {} }) }
+  },
   components: {
     customTable,
     customPagination,

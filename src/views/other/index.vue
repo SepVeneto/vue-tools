@@ -15,12 +15,14 @@
 <script>
 import { line2Camel } from '@/utils/tools';
 import ClickCopy from './example/clickCopy';
+import ConfigProvider from './example/configProvider';
 import AsideMenu from '@/views/components/asideMenu.vue';
 import { other as config } from '@/config';
 export default {
   name: 'otherExample',
   components: {
     ClickCopy,
+    ConfigProvider,
     AsideMenu,
   },
   computed: {
